@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Interface;
+using API.Models;
+using API.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using TEV.TEST.API.Models;
 
 namespace TEV.TEST.API
 {
@@ -23,6 +28,9 @@ namespace TEV.TEST.API
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+			services.AddDbContext<TEVContext>(opt =>
+				opt.UseInMemoryDatabase("UserModel"));
+			services.AddScoped<IUser<User>, UserRepository>();
 			services.AddMvc();
 		}
 
