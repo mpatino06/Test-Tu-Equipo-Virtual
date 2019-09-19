@@ -37,7 +37,6 @@ namespace API.Controllers
 			return Ok(result);
 		}
 
-
 		[HttpPost]
 		public IActionResult Post([FromBody] User model)
 		{
